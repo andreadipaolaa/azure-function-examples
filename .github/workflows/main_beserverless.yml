@@ -13,6 +13,7 @@ env:
   AZURE_FUNCTIONAPP_NAME: BEserverless # set this to your function app name on Azure
   PACKAGE_DIRECTORY: '.' # set this to the directory which contains pom.xml file
   JAVA_VERSION: '11' # set this to the java version to use
+  DEPLOY_MODULE_DIRECTORY: 'azure-function-examples'
 
 jobs:
   build-and-deploy:
