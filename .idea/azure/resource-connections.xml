@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="connections">
+    <connection type="Azure.Insights:Jetbrains.IJModule" envPrefix="AZURE_INSIGHTS">
+      <resource type="Azure.Insights">2c75a3045cbac3df7b6b30c0bc6f5ffb</resource>
+      <consumer type="Jetbrains.IJModule">azure-function-examples</consumer>
+    </connection>
+  </component>
+</project>
