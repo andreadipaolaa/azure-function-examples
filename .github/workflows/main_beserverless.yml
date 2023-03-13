@@ -13,11 +13,10 @@ env:
   AZURE_FUNCTIONAPP_NAME: BEserverless # set this to your function app name on Azure
   PACKAGE_DIRECTORY: '.' # set this to the directory which contains pom.xml file
   JAVA_VERSION: '11' # set this to the java version to use
-  DEPLOY_MODULE_DIRECTORY: 'azure-function-examples'
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@v2
@@ -39,6 +38,6 @@ jobs:
         with:
           app-name: 'BEserverless'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C8872F68A3C8443A9E271392F191B7AB }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3918C4A77508477ABBF318E433F43384 }}
           package: '${{ env.PACKAGE_DIRECTORY }}'
           respect-pom-xml: true
