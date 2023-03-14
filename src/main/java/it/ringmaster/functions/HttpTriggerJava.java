@@ -36,7 +36,7 @@ public class HttpTriggerJava {
         return request.createResponseBuilder(HttpStatus.OK).body(map).build();
     }
 
-    @FunctionName("TestGetQuery")
+    @FunctionName("TestGet")
     public HttpResponseMessage getTest(
             @HttpTrigger(name = "req", methods = {HttpMethod.GET}, authLevel = AuthorizationLevel.ANONYMOUS, route = "/getQuery") HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
