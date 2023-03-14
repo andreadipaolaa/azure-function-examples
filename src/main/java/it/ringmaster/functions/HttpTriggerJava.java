@@ -18,7 +18,9 @@ public class HttpTriggerJava {
             @HttpTrigger(name = "req", methods = {HttpMethod.GET}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Void> request,
             final ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
+        Map<String, String> map =new HashMap<>();
+        map.put("test", "hello");
 
-        return request.createResponseBuilder(HttpStatus.OK).body("Hi guys").build();
+        return request.createResponseBuilder(HttpStatus.OK).body(map).build();
     }
 }
