@@ -26,7 +26,7 @@ public class HttpTriggerJava {
 
     @FunctionName("TestGetQuery")
     public HttpResponseMessage getQueryTest(
-            @HttpTrigger(name = "req", methods = {HttpMethod.GET}, authLevel = AuthorizationLevel.ANONYMOUS, route = "/get/{name}") HttpRequestMessage<Void> request,
+            @HttpTrigger(name = "req", methods = {HttpMethod.GET}, authLevel = AuthorizationLevel.ANONYMOUS, route = "get/{name}") HttpRequestMessage<Void> request,
             @BindingName("name") String name,
             final ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
@@ -38,7 +38,7 @@ public class HttpTriggerJava {
 
     @FunctionName("TestGet")
     public HttpResponseMessage getTest(
-            @HttpTrigger(name = "req", methods = {HttpMethod.GET}, authLevel = AuthorizationLevel.ANONYMOUS, route = "/getQuery") HttpRequestMessage<Optional<String>> request,
+            @HttpTrigger(name = "req", methods = {HttpMethod.GET}, authLevel = AuthorizationLevel.ANONYMOUS, route = "getQuery") HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
         String name = request.getQueryParameters().getOrDefault("name", "Pasquale");
@@ -50,7 +50,7 @@ public class HttpTriggerJava {
 
     @FunctionName("TestPost")
     public HttpResponseMessage postTest(
-            @HttpTrigger(name = "req", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS, route = "/post") HttpRequestMessage<Map<String,String>> request,
+            @HttpTrigger(name = "req", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS, route = "post") HttpRequestMessage<Map<String,String>> request,
             @BindingName("name") String name,
             final ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
