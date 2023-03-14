@@ -15,11 +15,46 @@ public class HttpTriggerJava {
      */
     @FunctionName("HttpTriggerJava")
     public HttpResponseMessage run(
-            @HttpTrigger(name = "req", methods = {HttpMethod.GET}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Map<String,String>> request,
+            @HttpTrigger(name = "req", methods = {HttpMethod.GET}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Void> request,
             final ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
         Map<String, String> map =new HashMap<>();
         map.put("test", "hello");
+
+        return request.createResponseBuilder(HttpStatus.OK).body(map).build();
+    }
+
+    @FunctionName("TestGetQuery")
+    public HttpResponseMessage getQueryTest(
+            @HttpTrigger(name = "req", methods = {HttpMethod.GET}, authLevel = AuthorizationLevel.ANONYMOUS, route = "/get/{name}") HttpRequestMessage<Void> request,
+            @BindingName("name") String name,
+            final ExecutionContext context) {
+        context.getLogger().info("Java HTTP trigger processed a request.");
+        Map<String, String> map =new HashMap<>();
+        map.put("nome", "ciao " + name);
+
+        return request.createResponseBuilder(HttpStatus.OK).body(map).build();
+    }
+
+    @FunctionName("TestGetQuery")
+    public HttpResponseMessage getTest(
+            @HttpTrigger(name = "req", methods = {HttpMethod.GET}, authLevel = AuthorizationLevel.ANONYMOUS, route = "/getQuery") HttpRequestMessage<Optional<String>> request,
+            final ExecutionContext context) {
+        context.getLogger().info("Java HTTP trigger processed a request.");
+        String name = request.getQueryParameters().getOrDefault("name", "Pasquale");
+        Map<String, String> map =new HashMap<>();
+        map.put("nome", "ciao " + name);
+
+        return request.createResponseBuilder(HttpStatus.OK).body(map).build();
+    }
+
+    @FunctionName("TestPost")
+    public HttpResponseMessage postTest(
+            @HttpTrigger(name = "req", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS, route = "/post") HttpRequestMessage<Map<String,String>> request,
+            @BindingName("name") String name,
+            final ExecutionContext context) {
+        context.getLogger().info("Java HTTP trigger processed a request.");
+        Map<String, String> map = request.getBody();
 
         return request.createResponseBuilder(HttpStatus.OK).body(map).build();
     }
