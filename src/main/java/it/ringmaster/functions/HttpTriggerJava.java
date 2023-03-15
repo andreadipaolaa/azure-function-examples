@@ -21,7 +21,7 @@ public class HttpTriggerJava {
         Map<String, String> map =new HashMap<>();
         map.put("test", "hello");
 
-        return request.createResponseBuilder(HttpStatus.OK).body(map).build();
+        return request.createResponseBuilder(HttpStatus.OK).body("CIAO").build();
     }
 
     @FunctionName("TestGet")
