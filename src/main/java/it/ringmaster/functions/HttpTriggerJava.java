@@ -57,4 +57,28 @@ public class HttpTriggerJava {
 
         return request.createResponseBuilder(HttpStatus.OK).body(map).build();
     }
+    
+    @FunctionName("Filtertable")
+	public HttpResponseMessage filterTable(
+			@HttpTrigger(name = "req", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS, route = "table") HttpRequestMessage<Void> request,
+			final ExecutionContext context) {
+
+		Map<String,String> map = new HashMap<>();
+		map.put("name","Pasquale");
+		map.put("surname","Gallo");
+		map.put("city","Battipaglia");
+		Map<String,String> map2 = new HashMap<>();
+		map.put("name","Andrea");
+		map.put("surname","Di Paola");
+		map.put("city","Roma");
+		Map<String,String> map3 = new HashMap<>();
+		map.put("name","Edoardo");
+		map.put("surname","Comodi");
+		map.put("city","Perugia");
+		List<Map<String,String>>  table = new ArrayList<>();
+		table.add(map);
+		table.add(map2);
+		table.add(map3);
+		return request.createResponseBuilder(HttpStatus.OK).body(table).build();
+	}
 }
