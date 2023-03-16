@@ -88,7 +88,7 @@ public class HttpTriggerJava {
                                        }
                                   }
 		}
-		return request.createResponseBuilder(HttpStatus.OK).body(table).build();
+		return request.createResponseBuilder(HttpStatus.OK).body(filter).build();
 	}
 
 }
