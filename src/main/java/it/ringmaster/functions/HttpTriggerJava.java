@@ -59,7 +59,7 @@ public class HttpTriggerJava {
     }
     
     @FunctionName("Filtertable")
-	public HttpResponseMessage filterTable(
+    public HttpResponseMessage filterTable(
 			@HttpTrigger(name = "req", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS, route = "table") HttpRequestMessage<Map<String,String>> request,
 			final ExecutionContext context) {
 		String filter = request.getBody().get("filter");
@@ -92,7 +92,7 @@ public class HttpTriggerJava {
                if (search){
 		return request.createResponseBuilder(HttpStatus.OK).body(table2).build();
 	       }
-		else { request.createResponseBuilder(HttpStatus.OK).body(table).build();
+		else { return request.createResponseBuilder(HttpStatus.OK).body(table).build();
 		     }
 	}
 
