@@ -82,7 +82,7 @@ public class HttpTriggerJava {
 		for(Map<String,String> elem : table) {
 			for(String value: elem.values()) {
 				if (filter == value) {
-					return request.createResponseBuilder(HttpStatus.OK).body(new ArrayList<Map<String,String>>().add(elem)).build();
+					return request.createResponseBuilder(HttpStatus.OK).body(elem).build();
 				}
 			}
 		}
