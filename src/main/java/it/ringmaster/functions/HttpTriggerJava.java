@@ -62,7 +62,7 @@ public class HttpTriggerJava {
 	public HttpResponseMessage filterTable(
 			@HttpTrigger(name = "req", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS, route = "table") HttpRequestMessage<Optional<String>> request,
 			final ExecutionContext context) {
-		String filter = request.getQueryParameters().getOrDefault("filter", "Daniele");
+		String filter = request.getBody().get();
 		Map<String,String> map = new HashMap<>();
 		map.put("name","Pasquale");
 		map.put("surname","Gallo");
@@ -82,9 +82,11 @@ public class HttpTriggerJava {
 		for(Map<String,String> elem : table) {
 			for(String value: elem.values()) {
 				if (filter == value) {
-					return request.createResponseBuilder(HttpStatus.OK).body(elem).build();
-				}
-			}
+					List<Map<String,String>> table2 = new ArrayList<>();
+                                        table2.add(elem);
+                                        return request.createResponseBuilder(HttpStatus.OK).body(table2).build();
+                                       }
+                                  }
 		}
 		return request.createResponseBuilder(HttpStatus.OK).body(table).build();
 	}
