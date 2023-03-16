@@ -79,16 +79,21 @@ public class HttpTriggerJava {
 		table.add(map);
 		table.add(map2);
 		table.add(map3);
-		for(Map<String,String> elem : table) {
-			for(String value: elem.values()) {
-				if (filter == value) {
-					List<Map<String,String>> table2 = new ArrayList<>();
-                                        table2.add(elem);
-                                        return request.createResponseBuilder(HttpStatus.OK).body(table2).build();
-                                       }
-                                  }
-		}
-		return request.createResponseBuilder(HttpStatus.OK).body(filter).build();
+		boolean search=false;
+                List<Map<String,String>> table2 = new ArrayList<>();
+                for(Map<String,String> elem : table) {
+                  for(String value: elem.values()) {
+                     if (filter == value) {
+			     table2.add(elem);
+			     search = true;
+                         }
+                    }
+                }
+               if (search){
+		return request.createResponseBuilder(HttpStatus.OK).body(table2).build();
+	       }
+		else { request.createResponseBuilder(HttpStatus.OK).body(table).build();
+		     }
 	}
 
 }
