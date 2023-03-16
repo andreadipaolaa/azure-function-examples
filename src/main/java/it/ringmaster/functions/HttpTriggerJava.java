@@ -60,9 +60,9 @@ public class HttpTriggerJava {
     
     @FunctionName("Filtertable")
 	public HttpResponseMessage filterTable(
-			@HttpTrigger(name = "req", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS, route = "table") HttpRequestMessage<Optional<String>> request,
+			@HttpTrigger(name = "req", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS, route = "table") HttpRequestMessage<Map<String,String>> request,
 			final ExecutionContext context) {
-		String filter = request.getBody().get();
+		String filter = request.getBody().get("filter");
 		Map<String,String> map = new HashMap<>();
 		map.put("name","Pasquale");
 		map.put("surname","Gallo");
